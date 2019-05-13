@@ -1,0 +1,79 @@
+
+/*
+mapsTestFab.setOnClickListener { view ->
+            Snackbar.make(view, "Maps API", Snackbar.LENGTH_SHORT).show()
+
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://maps.googleapis.com")
+                .client(
+                    OkHttpClient.Builder().addInterceptor(
+                        HttpLoggingInterceptor().apply {
+                            level = HttpLoggingInterceptor.Level.BODY
+                        }
+                    )
+                        .addInterceptor { chain ->
+                            val request = chain.request().let {
+                                val url =
+                                    it.url().newBuilder().addQueryParameter("key", BuildConfig.GOOGLE_API_KEY).build()
+                                it.newBuilder().url(url).build()
+                            }
+                            chain.proceed(request)
+                        }
+                        .build()
+                )
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build()
+
+            val geoAPI = retrofit.create(GeoCodingAPI::class.java)
+            geoAPI.geocode("London")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    Log.d("TEMP", it)
+                }, {
+                    it.printStackTrace()
+                })
+
+        }
+        weatherTestFab.setOnClickListener { view ->
+            Snackbar.make(view, "Weather API", Snackbar.LENGTH_SHORT).show()
+
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://api.openweathermap.org")
+                .client(
+                    OkHttpClient.Builder().addInterceptor(
+                        HttpLoggingInterceptor().apply {
+                            level = HttpLoggingInterceptor.Level.BODY
+                        }
+                    )
+                        .addInterceptor { chain ->
+                            val request = chain.request().let {
+                                val url =
+                                    it.url().newBuilder().addQueryParameter("appid", BuildConfig.OPEN_WEATHER_API_KEY)
+                                        .build()
+                                it.newBuilder().url(url).build()
+                            }
+                            chain.proceed(request)
+                        }
+                        .build()
+                )
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build()
+
+            val weatherAPI = retrofit.create(WeatherAPI::class.java)
+            weatherAPI.getWeatherForecast(
+                lat = 51.5073509,
+                lon = -0.1277583
+            )
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    Log.d("TEMP", it)
+                }, {
+                    it.printStackTrace()
+                })
+
+        }
+*/

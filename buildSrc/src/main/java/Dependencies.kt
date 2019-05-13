@@ -17,9 +17,10 @@ object Versions {
     const val constraintLayout = "1.1.3"
     const val material = "1.0.0"
 
-    // Android X
+    // Jetpack
     const val androidXCore = "1.0.2"
     const val androidXLegacy = "1.0.0"
+    const val navigationVersion = "2.1.0-alpha03"
 
     // Rx
     const val rxJava = "2.2.8"
@@ -39,16 +40,21 @@ object Versions {
 }
 
 object Deps {
-    // Gradle Plugins
+    // Plugins
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
+    const val navigationSafeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigationVersion}"
 
     // Android
     const val appComppat = "androidx.appcompat:appcompat:${Versions.supportLib}"
     const val androidXCore = "androidx.core:core-ktx:${Versions.androidXCore}"
-    const val androidXLegacy = "androidx.legacy:legacy-support-v4:${Versions.androidXLegacy}"
+    const val androidSupportLegacy = "androidx.legacy:legacy-support-v4:${Versions.androidXLegacy}"
     const val androidMaterial = "com.google.android.material:material:${Versions.material}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    const val navigationFragment = "androidx.navigation:navigation-fragment:${Versions.navigationVersion}"
+    const val navigationUI = "androidx.navigation:navigation-ui:${Versions.navigationVersion}"
+    const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.navigationVersion}"
+    const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.navigationVersion}"
 
     // Kotlin
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"

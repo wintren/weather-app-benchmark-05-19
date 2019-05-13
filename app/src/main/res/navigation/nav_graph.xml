@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/nav_graph"
+            app:startDestination="@id/locationsFragment">
+
+    <fragment
+            android:id="@+id/fragment_add_location"
+            android:name="se.wintren.freyr.AddLocationFragment"
+            android:label="Add Location"
+            tools:layout="@layout/fragment_add_location"/>
+
+    <fragment
+            android:id="@+id/fragment_settings"
+            android:name="se.wintren.freyr.SettingsFragment"
+            android:label="Settings"
+            tools:layout="@layout/fragment_settings"/>
+
+    <fragment
+            android:id="@+id/fragment_forecast"
+            android:name="se.wintren.freyr.ForecastFragment"
+            android:label="Forecast"
+            tools:layout="@layout/fragment_forecast"/>
+
+    <fragment android:id="@+id/locationsFragment"
+              android:name="se.wintren.freyr.LocationsFragment"
+              android:label="Locations"
+              tools:layout="@layout/fragment_locations"/>
+
+</navigation>

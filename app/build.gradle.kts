@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-android-extensions")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -33,14 +34,16 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(Deps.kotlin)
 
-    // Android X
-    implementation(Deps.androidXCore)
-    implementation(Deps.androidXLegacy)
-
     // Android / Support
+    implementation(Deps.androidXCore)
+    implementation(Deps.androidSupportLegacy)
     implementation(Deps.appComppat)
     implementation(Deps.androidMaterial)
     implementation(Deps.constraintLayout)
+    implementation(Deps.navigationFragment)
+    implementation(Deps.navigationUI)
+    implementation(Deps.lifecycleExtensions)
+    implementation(Deps.lifecycleViewModel)
 
     // Rx
     implementation(Deps.rxJava)

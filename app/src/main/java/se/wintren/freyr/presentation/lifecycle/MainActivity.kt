@@ -1,4 +1,4 @@
-package se.wintren.freyr
+package se.wintren.freyr.presentation.lifecycle
 
 import android.os.Bundle
 import android.view.MenuItem
@@ -12,6 +12,7 @@ import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
+import se.wintren.freyr.R
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {

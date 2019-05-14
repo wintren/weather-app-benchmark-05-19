@@ -1,4 +1,4 @@
-package se.wintren.freyr
+package se.wintren.freyr.repository.database.model
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -6,7 +6,7 @@ import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
 @Entity(primaryKeys = ["id"])
-data class LocationData(
+data class LocationEntity(
     @SerializedName("id") val id: Long,
     @SerializedName("cityName") val cityName: String,
     @SerializedName("region") val region: String,
@@ -31,12 +31,12 @@ data class LocationData(
         writeDouble(lat)
     }
 
-    companion object CREATOR : Parcelable.Creator<LocationData> {
-        override fun createFromParcel(parcel: Parcel): LocationData {
-            return LocationData(parcel)
+    companion object CREATOR : Parcelable.Creator<LocationEntity> {
+        override fun createFromParcel(parcel: Parcel): LocationEntity {
+            return LocationEntity(parcel)
         }
 
-        override fun newArray(size: Int): Array<LocationData?> {
+        override fun newArray(size: Int): Array<LocationEntity?> {
             return arrayOfNulls(size)
         }
     }

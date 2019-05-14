@@ -10,8 +10,8 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import se.wintren.freyr.BuildConfig
-import se.wintren.freyr.GeoCodingAPI
-import se.wintren.freyr.WeatherAPI
+import se.wintren.freyr.repository.network.GeoCodingAPI
+import se.wintren.freyr.repository.network.WeatherAPI
 import javax.inject.Named
 import javax.inject.Singleton
 

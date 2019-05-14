@@ -4,8 +4,8 @@ import android.app.Application
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
-import se.wintren.freyr.AppDatabase
-import se.wintren.freyr.LocationDao
+import se.wintren.freyr.repository.database.AppDatabase
+import se.wintren.freyr.repository.database.LocationDao
 import javax.inject.Singleton
 
 @Module

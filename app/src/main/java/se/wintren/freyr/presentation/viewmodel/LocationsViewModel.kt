@@ -1,4 +1,4 @@
-package se.wintren.freyr.presentation
+package se.wintren.freyr.presentation.viewmodel
 
 import android.content.Context
 import android.util.Log
@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import se.wintren.freyr.GeoCodingAPI
+import se.wintren.freyr.repository.network.GeoCodingAPI
 import javax.inject.Inject
 
 class LocationsViewModel @Inject constructor(
@@ -19,7 +19,7 @@ class LocationsViewModel @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, it.toString(), Toast.LENGTH_SHORT).show()
             }, {
                 it.printStackTrace()
                 Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()

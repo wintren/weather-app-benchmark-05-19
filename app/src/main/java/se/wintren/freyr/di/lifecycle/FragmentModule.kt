@@ -2,10 +2,10 @@ package se.wintren.freyr.di.lifecycle
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import se.wintren.freyr.AddLocationFragment
-import se.wintren.freyr.ForecastFragment
-import se.wintren.freyr.LocationsFragment
-import se.wintren.freyr.SettingsFragment
+import se.wintren.freyr.presentation.lifecycle.AddLocationFragment
+import se.wintren.freyr.presentation.lifecycle.ForecastFragment
+import se.wintren.freyr.presentation.lifecycle.LocationsFragment
+import se.wintren.freyr.presentation.lifecycle.SettingsFragment
 
 @Module
 abstract class FragmentModule {

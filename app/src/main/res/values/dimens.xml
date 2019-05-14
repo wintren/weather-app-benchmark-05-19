@@ -1,3 +1,14 @@
 <resources>
+    <dimen name="standard_side_margin">16dp</dimen>
+    <dimen name="margin_regular">8dp</dimen>
+    <dimen name="margin_large">16dp</dimen>
+    <dimen name="add_fragment_input_card_margin_top">28dp</dimen>
+    <dimen name="add_fragment_result_card_height">64dp</dimen>
+    <dimen name="add_location_location_card_side_margin">32dp</dimen>
+    <dimen name="icon_size_regular">24dp</dimen>
 
+    <!-- Text sizes -->
+    <dimen name="text_size_small">11sp</dimen>
+    <dimen name="text_size_regular">14sp</dimen>
+    <dimen name="text_size_large">24sp</dimen>
 </resources>

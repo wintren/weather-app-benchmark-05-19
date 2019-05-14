@@ -1,4 +1,4 @@
-package se.wintren.freyr
+package se.wintren.freyr.presentation.lifecycle
 
 import android.app.Activity
 import android.app.Application

@@ -1,4 +1,4 @@
-package se.wintren.freyr
+package se.wintren.freyr.repository.network
 
 import io.reactivex.Single
 import retrofit2.http.GET

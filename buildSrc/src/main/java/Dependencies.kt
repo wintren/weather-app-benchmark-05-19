@@ -31,6 +31,12 @@ object Versions {
     const val retrofitRxAdapter = "2.5.0"
     const val loggingInterceptor = "3.4.1"
 
+    // Dagger 2
+    const val dagger = "2.17"
+
+    // Room
+    const val room = "1.1.1"
+
     // Test
     const val androidXEspresso = "3.1.1"
     const val androidXTestRunner = "1.1.1"
@@ -68,6 +74,17 @@ object Deps {
     const val gsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
     const val retrofitRxAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofitRxAdapter}"
     const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.loggingInterceptor}"
+
+    // Dagger 2
+    const val daggerAndroid = "com.google.dagger:dagger-android:${Versions.dagger}"
+    const val daggerSupport = "com.google.dagger:dagger-android-support:${Versions.dagger}"
+    const val daggerProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
+    const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+
+    // Room
+    const val archRoom = "android.arch.persistence.room:runtime:${Versions.room}"
+    const val archRoomRx = "android.arch.persistence.room:rxjava2:${Versions.room}"
+    const val archRoomCompiler = "android.arch.persistence.room:compiler:${Versions.room}"
 
     // Test
     const val jUnit = "junit:junit:${Versions.jUnit}"

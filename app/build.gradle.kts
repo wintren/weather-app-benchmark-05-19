@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-android-extensions")
+    id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -54,6 +55,17 @@ dependencies {
     implementation(Deps.gsonConverter)
     implementation(Deps.retrofitRxAdapter)
     implementation(Deps.loggingInterceptor)
+
+    // Dagger 2
+    implementation(Deps.daggerAndroid)
+    implementation(Deps.daggerSupport)
+    kapt(Deps.daggerCompiler)
+    kapt(Deps.daggerProcessor)
+
+    // Room
+    implementation(Deps.archRoom)
+    implementation(Deps.archRoomRx)
+    kapt(Deps.archRoomCompiler)
 
     // Test
     testImplementation(Deps.jUnit)

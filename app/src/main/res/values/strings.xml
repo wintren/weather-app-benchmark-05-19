@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Freyr</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="add_location_hint">Location</string>
+    <string name="add_location_hint">City</string>
+
+    <!-- Menu -->
+    <string name="menu_item_done">Done</string>
+    <string name="menu_item_settings">Settings</string>
 </resources>

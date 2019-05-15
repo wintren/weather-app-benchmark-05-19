@@ -49,7 +49,7 @@ class ApiModule {
     @Named("GeoAPI")
     fun provideGeoApiKey(): ApiKey = "key" to BuildConfig.GOOGLE_API_KEY
     //endregion
-    
+
     //region WeatherAPI
     @Provides
     @Singleton

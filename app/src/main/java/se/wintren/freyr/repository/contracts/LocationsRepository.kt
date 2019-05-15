@@ -1,15 +1,15 @@
 package se.wintren.freyr.repository.contracts
 
-import io.reactivex.Single
-import se.wintren.freyr.repository.database.model.LocationEntity
+import io.reactivex.Observable
+import se.wintren.freyr.domain.data.Location
 import se.wintren.freyr.repository.network.model.GeoCodeResponseDTO
 
 interface LocationsRepository {
 
-    fun getGeoCode(value: String): Single<GeoCodeResponseDTO>
+    fun getGeoCode(value: String): Observable<GeoCodeResponseDTO>
 
-    fun getLocation(id: Long): Single<LocationEntity>
+    fun getLocations(): List<Location>
 
-    fun storeLocation(location: LocationEntity): Single<Long>
+    fun storeLocation(location: Location)
 
 }

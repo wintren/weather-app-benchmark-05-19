@@ -18,7 +18,7 @@ object Versions {
     const val material = "1.0.0"
 
     // Jetpack
-    const val androidXCore = "1.0.2"
+    const val androidX = "1.0.2"
     const val androidXLegacy = "1.0.0"
     const val navigationVersion = "2.1.0-alpha03"
 
@@ -52,14 +52,16 @@ object Deps {
     const val navigationSafeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigationVersion}"
 
     // Android
-    const val appComppat = "androidx.appcompat:appcompat:${Versions.supportLib}"
-    const val androidXCore = "androidx.core:core-ktx:${Versions.androidXCore}"
     const val androidSupportLegacy = "androidx.legacy:legacy-support-v4:${Versions.androidXLegacy}"
+    const val appComppat = "androidx.appcompat:appcompat:${Versions.supportLib}"
     const val androidMaterial = "com.google.android.material:material:${Versions.material}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
-    const val navigationFragment = "androidx.navigation:navigation-fragment:${Versions.navigationVersion}"
+
     const val navigationUI = "androidx.navigation:navigation-ui:${Versions.navigationVersion}"
     const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.navigationVersion}"
+
+    const val androidXCore = "androidx.core:core-ktx:${Versions.androidX}"
+    const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigationVersion}"
     const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.navigationVersion}"
 
     // Kotlin

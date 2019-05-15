@@ -4,10 +4,17 @@ import dagger.Module
 import dagger.Provides
 import se.wintren.freyr.domain.mapper.GeoCodeDataMapperImpl
 import se.wintren.freyr.domain.mapper.contract.GeoCodeDataMapper
+import se.wintren.freyr.domain.mapper.contract.GeoCodeToLocationMapper
+import se.wintren.freyr.domain.mapper.GeoCodeToLocationMapperImpl
+import se.wintren.freyr.domain.mapper.LocationEntityMapperImpl
+import se.wintren.freyr.domain.mapper.contract.LocationEntityMapper
 import se.wintren.freyr.domain.usecase.GetGeoCodeUseCaseImpl
+import se.wintren.freyr.domain.usecase.StoreLocationUseCaseImpl
 import se.wintren.freyr.domain.usecase.contracts.GetGeoCodeUseCase
+import se.wintren.freyr.domain.usecase.contracts.StoreLocationUseCase
 import se.wintren.freyr.repository.LocationsRepositoryImpl
 import se.wintren.freyr.repository.contracts.LocationsRepository
+import se.wintren.freyr.repository.database.LocationDao
 import se.wintren.freyr.repository.network.GeoCodingAPI
 import se.wintren.freyr.util.RuntimeRxSchedulers
 import se.wintren.freyr.util.RxSchedulers
@@ -20,9 +27,12 @@ class AppModule {
     @Provides
     @Singleton
     fun provideLocationsRepository(
-        api: GeoCodingAPI
+        api: GeoCodingAPI,
+        schedulers: RxSchedulers,
+        locationEntityMapper: LocationEntityMapper,
+        locationDao: LocationDao
     ): LocationsRepository {
-        return LocationsRepositoryImpl(api)
+        return LocationsRepositoryImpl(api, locationDao, locationEntityMapper, schedulers)
     }
     //endregion
 
@@ -31,13 +41,35 @@ class AppModule {
     @Singleton
     fun provideGetGeoCodeUseCase(
         repository: LocationsRepository,
-        mapper: GeoCodeDataMapper
+        mapper: GeoCodeDataMapper,
+        schedulers: RxSchedulers
     ): GetGeoCodeUseCase {
-        return GetGeoCodeUseCaseImpl(repository, mapper)
+        return GetGeoCodeUseCaseImpl(repository, mapper, schedulers)
+    }
+
+    @Provides
+    @Singleton
+    fun provideStoreLocationUseCase(
+        repository: LocationsRepository,
+        mapper: GeoCodeToLocationMapper
+    ): StoreLocationUseCase {
+        return StoreLocationUseCaseImpl(repository, mapper)
     }
     //endregion
 
     //region Provide Mappers
+    @Provides
+    @Singleton
+    fun provideGeoCodeToLocationMapper(): GeoCodeToLocationMapper {
+        return GeoCodeToLocationMapperImpl()
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocationEntityMapper(): LocationEntityMapper {
+        return LocationEntityMapperImpl()
+    }
+
     @Provides
     @Singleton
     fun provideGeoCodeMapper(): GeoCodeDataMapper = GeoCodeDataMapperImpl()

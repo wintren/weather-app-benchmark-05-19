@@ -5,6 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
+    android:focusable="true"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
     android:background="@color/background_grey"
     tools:context=".presentation.lifecycle.AddLocationFragment">
 
@@ -37,10 +40,12 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:animateLayoutChanges="true"
+        android:id="@+id/resultCard"
         android:layout_width="0dp"
         android:layout_height="@dimen/add_fragment_result_card_height"
         android:layout_marginLeft="@dimen/add_location_location_card_side_margin"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="24dp"
         android:layout_marginRight="@dimen/add_location_location_card_side_margin"
         android:visibility="invisible"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -64,7 +69,7 @@
             tools:visibility="visible">
 
             <ImageView
-                android:id="@+id/locationIcon"
+                android:id="@+id/resultIcon"
                 android:layout_width="@dimen/icon_size_regular"
                 android:layout_height="@dimen/icon_size_regular"
                 android:layout_margin="@dimen/margin_regular"
@@ -74,29 +79,29 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/locationName"
+                android:id="@+id/resultCity"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="3dp"
                 android:ellipsize="end"
                 android:textSize="@dimen/text_size_large"
-                app:layout_constraintLeft_toRightOf="@id/locationIcon"
+                app:layout_constraintLeft_toRightOf="@id/resultIcon"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="London" />
 
             <TextView
-                android:id="@+id/locationRegion"
+                android:id="@+id/resultCountry"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="4dp"
                 android:ellipsize="end"
                 android:textSize="@dimen/text_size_regular"
-                app:layout_constraintLeft_toLeftOf="@id/locationIcon"
+                app:layout_constraintLeft_toLeftOf="@id/resultIcon"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/locationIcon"
+                app:layout_constraintTop_toBottomOf="@id/resultIcon"
                 tools:text="United Kingdom" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

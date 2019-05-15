@@ -1,10 +1,10 @@
 package se.wintren.freyr.domain.usecase.contracts
 
-import io.reactivex.Single
+import io.reactivex.Observable
 import se.wintren.freyr.domain.data.GeoCode
 
 interface GetGeoCodeUseCase {
 
-    fun getGeoCode(value: String): Single<GeoCode>
+    fun getGeoCode(value: String): Observable<GeoCode>
 
 }

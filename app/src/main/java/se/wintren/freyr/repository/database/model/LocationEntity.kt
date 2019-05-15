@@ -5,16 +5,14 @@ import android.os.Parcelable
 import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
-@Entity(primaryKeys = ["id"])
+@Entity(primaryKeys = ["city"])
 data class LocationEntity(
-    @SerializedName("id") val id: Long,
-    @SerializedName("cityName") val cityName: String,
-    @SerializedName("region") val region: String,
+    @SerializedName("city") val city: String,
+    @SerializedName("country") val country: String,
     @SerializedName("lon") val lon: Double,
     @SerializedName("lat") val lat: Double
 ) : Parcelable {
     constructor(source: Parcel) : this(
-        source.readLong(),
         source.readString()!!,
         source.readString()!!,
         source.readDouble(),
@@ -24,9 +22,8 @@ data class LocationEntity(
     override fun describeContents(): Int = 0
 
     override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
-        writeLong(id)
-        writeString(cityName)
-        writeString(region)
+        writeString(city)
+        writeString(country)
         writeDouble(lon)
         writeDouble(lat)
     }

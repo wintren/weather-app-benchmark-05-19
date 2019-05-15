@@ -4,7 +4,7 @@
     <dimen name="margin_large">16dp</dimen>
     <dimen name="add_fragment_input_card_margin_top">28dp</dimen>
     <dimen name="add_fragment_result_card_height">64dp</dimen>
-    <dimen name="add_location_location_card_side_margin">32dp</dimen>
+    <dimen name="add_location_location_card_side_margin">40dp</dimen>
     <dimen name="icon_size_regular">24dp</dimen>
 
     <!-- Text sizes -->

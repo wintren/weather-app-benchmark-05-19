@@ -20,6 +20,8 @@ android {
         buildConfigField("String", "OPEN_WEATHER_API_KEY", property("OpenWeather_API_KEY") as String)
     }
 
+    dataBinding.isEnabled = true
+
     buildTypes {
         getByName("debug") {
 

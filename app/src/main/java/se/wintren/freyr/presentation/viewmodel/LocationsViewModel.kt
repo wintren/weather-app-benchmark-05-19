@@ -1,29 +1,16 @@
 package se.wintren.freyr.presentation.viewmodel
 
-import android.content.Context
-import android.util.Log
-import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import se.wintren.freyr.repository.network.GeoCodingAPI
+import se.wintren.freyr.domain.data.Location
+import se.wintren.freyr.domain.usecase.contracts.GetLocationsUseCase
 import javax.inject.Inject
 
 class LocationsViewModel @Inject constructor(
-    private val geoApi: GeoCodingAPI
+    getLocationsUseCase: GetLocationsUseCase
 ) : ViewModel() {
 
-    fun testApi(context: Context) {
-        Log.d("Bajs", "I has geo?: $geoApi")
-        geoApi.geocode("London")
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                Toast.makeText(context, it.toString(), Toast.LENGTH_SHORT).show()
-            }, {
-                it.printStackTrace()
-                Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
-            })
-    }
+    val locations: LiveData<List<Location>> = getLocationsUseCase.getLocations()
 
 }

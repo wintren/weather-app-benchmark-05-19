@@ -5,4 +5,7 @@ data class Location(
     val country: String,
     val lon: Double,
     val lat: Double
-)
+) {
+    val formatted: String
+        get() = "$city, $country"
+}

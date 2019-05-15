@@ -1,5 +1,7 @@
 package se.wintren.freyr.repository
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Transformations
 import io.reactivex.Observable
 import se.wintren.freyr.domain.data.Location
 import se.wintren.freyr.domain.mapper.contract.LocationEntityMapper
@@ -25,8 +27,11 @@ class LocationsRepositoryImpl @Inject constructor(
             }
     }
 
-    override fun getLocations(): List<Location> {
-        return locationDao.getAllLocations().map { mapper.entityToLocation(it) }
+    override fun getLocations(): LiveData<List<Location>> {
+        val locationEntities = locationDao.getAllLocations()
+        return Transformations.map(locationEntities) {
+            it.map { entity -> mapper.entityToLocation(entity) }
+        }
     }
 
     override fun storeLocation(location: Location) {

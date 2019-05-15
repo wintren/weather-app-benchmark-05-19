@@ -9,8 +9,10 @@ import se.wintren.freyr.domain.mapper.GeoCodeToLocationMapperImpl
 import se.wintren.freyr.domain.mapper.LocationEntityMapperImpl
 import se.wintren.freyr.domain.mapper.contract.LocationEntityMapper
 import se.wintren.freyr.domain.usecase.GetGeoCodeUseCaseImpl
+import se.wintren.freyr.domain.usecase.GetLocationsUseCaseImpl
 import se.wintren.freyr.domain.usecase.StoreLocationUseCaseImpl
 import se.wintren.freyr.domain.usecase.contracts.GetGeoCodeUseCase
+import se.wintren.freyr.domain.usecase.contracts.GetLocationsUseCase
 import se.wintren.freyr.domain.usecase.contracts.StoreLocationUseCase
 import se.wintren.freyr.repository.LocationsRepositoryImpl
 import se.wintren.freyr.repository.contracts.LocationsRepository
@@ -54,6 +56,14 @@ class AppModule {
         mapper: GeoCodeToLocationMapper
     ): StoreLocationUseCase {
         return StoreLocationUseCaseImpl(repository, mapper)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGetLocationsUseCase(
+        repository: LocationsRepository
+    ): GetLocationsUseCase {
+        return GetLocationsUseCaseImpl(repository)
     }
     //endregion
 

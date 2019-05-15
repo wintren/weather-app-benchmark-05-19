@@ -1,5 +1,6 @@
 package se.wintren.freyr.repository.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -13,6 +14,6 @@ interface LocationDao {
     fun insertLocation(location: LocationEntity): Long
 
     @Query("SELECT * FROM LocationEntity")
-    fun getAllLocations(): List<LocationEntity>
+    fun getAllLocations(): LiveData<List<LocationEntity>>
 
 }

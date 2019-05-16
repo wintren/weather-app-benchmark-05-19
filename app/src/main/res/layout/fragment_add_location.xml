@@ -1,110 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:animateLayoutChanges="true"
-    android:focusable="true"
-    android:clickable="true"
-    android:focusableInTouchMode="true"
-    android:background="@color/background_grey"
-    tools:context=".presentation.lifecycle.AddLocationFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/inputCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/standard_side_margin"
-        android:layout_marginTop="@dimen/add_fragment_input_card_margin_top"
-        android:layout_marginRight="@dimen/standard_side_margin"
-        android:padding="@dimen/margin_large"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <data>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayout"
-            android:layout_width="match_parent"
+        <import type="androidx.lifecycle.LiveData" />
+
+        <import type="se.wintren.freyr.domain.data.GeoCode" />
+
+        <variable
+            name="geocode"
+            type="LiveData&lt;GeoCode>" />
+
+        <variable
+            name="viewModel"
+            type="se.wintren.freyr.presentation.viewmodel.AddLocationViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/background_grey"
+        android:clickable="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        tools:context=".presentation.lifecycle.AddLocationFragment">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/inputCard"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_regular"
-            android:hint="@string/add_location_hint">
+            android:layout_marginLeft="@dimen/standard_side_margin"
+            android:layout_marginTop="@dimen/add_fragment_input_card_margin_top"
+            android:layout_marginRight="@dimen/standard_side_margin"
+            android:padding="@dimen/margin_large"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/inputEditText"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:maxLines="1" />
+                android:layout_margin="@dimen/margin_regular"
+                android:hint="@string/add_location_hint">
 
-        </com.google.android.material.textfield.TextInputLayout>
-    </androidx.cardview.widget.CardView>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1" />
 
-    <androidx.cardview.widget.CardView
-        android:animateLayoutChanges="true"
-        android:id="@+id/resultCard"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/add_fragment_result_card_height"
-        android:layout_marginLeft="@dimen/add_location_location_card_side_margin"
-        android:layout_marginTop="24dp"
-        android:layout_marginRight="@dimen/add_location_location_card_side_margin"
-        android:visibility="invisible"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/inputCard"
-        tools:visibility="visible">
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.cardview.widget.CardView>
 
-        <ProgressBar
-            android:id="@+id/loadingSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="@dimen/standard_side_margin"
-            app:layout_constraintLeft_toLeftOf="parent" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/locationResultsContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/resultCard"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/add_fragment_result_card_height"
+            android:layout_marginLeft="@dimen/add_location_location_card_side_margin"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="@dimen/add_location_location_card_side_margin"
+            android:animateLayoutChanges="true"
             android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputCard"
             tools:visibility="visible">
 
-            <ImageView
-                android:id="@+id/resultIcon"
-                android:layout_width="@dimen/icon_size_regular"
-                android:layout_height="@dimen/icon_size_regular"
-                android:layout_margin="@dimen/margin_regular"
-                android:src="@drawable/icon_location"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <ProgressBar
+                android:id="@+id/loadingSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/standard_side_margin"
+                app:layout_constraintLeft_toLeftOf="parent" />
 
-            <TextView
-                android:id="@+id/resultCity"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="3dp"
-                android:ellipsize="end"
-                android:textSize="@dimen/text_size_large"
-                app:layout_constraintLeft_toRightOf="@id/resultIcon"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="London" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/locationResultsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                tools:visibility="visible">
 
-            <TextView
-                android:id="@+id/resultCountry"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="4dp"
-                android:ellipsize="end"
-                android:textSize="@dimen/text_size_regular"
-                app:layout_constraintLeft_toLeftOf="@id/resultIcon"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/resultIcon"
-                tools:text="United Kingdom" />
+                <ImageView
+                    android:id="@+id/resultIcon"
+                    android:layout_width="@dimen/icon_size_regular"
+                    android:layout_height="@dimen/icon_size_regular"
+                    android:layout_margin="@dimen/margin_regular"
+                    android:src="@drawable/icon_location"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/resultCity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="3dp"
+                    android:ellipsize="end"
+                    android:textSize="@dimen/text_size_large"
+                    android:text="@{viewModel.city}"
+                    app:layout_constraintLeft_toRightOf="@id/resultIcon"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="London" />
 
-    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/resultCountry"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="4dp"
+                    android:ellipsize="end"
+                    android:textSize="@dimen/text_size_regular"
+                    android:text="@{viewModel.country}"
+                    app:layout_constraintLeft_toLeftOf="@id/resultIcon"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/resultIcon"
+                    tools:text="United Kingdom" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

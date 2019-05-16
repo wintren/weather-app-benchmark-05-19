@@ -69,6 +69,13 @@ dependencies {
     implementation(Deps.archRoomRx)
     kapt(Deps.archRoomCompiler)
 
+    // Joda
+    implementation(Deps.jodaTime)
+
+    // Glide
+    implementation(Deps.glide)
+    kapt(Deps.glideCompiler)
+
     // Test
     testImplementation(Deps.jUnit)
     androidTestImplementation(Deps.androidXTestRunner)

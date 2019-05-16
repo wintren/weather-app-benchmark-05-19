@@ -1,4 +1,4 @@
-package se.wintren.freyr.util.adapter
+package se.wintren.freyr.presentation.util
 
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView

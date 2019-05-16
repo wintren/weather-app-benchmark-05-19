@@ -3,21 +3,28 @@ package se.wintren.freyr.di.app
 import dagger.Module
 import dagger.Provides
 import se.wintren.freyr.domain.mapper.GeoCodeDataMapperImpl
-import se.wintren.freyr.domain.mapper.contract.GeoCodeDataMapper
-import se.wintren.freyr.domain.mapper.contract.GeoCodeToLocationMapper
 import se.wintren.freyr.domain.mapper.GeoCodeToLocationMapperImpl
 import se.wintren.freyr.domain.mapper.LocationEntityMapperImpl
+import se.wintren.freyr.domain.mapper.WeatherForecastDataMapperImpl
+import se.wintren.freyr.domain.mapper.contract.GeoCodeDataMapper
+import se.wintren.freyr.domain.mapper.contract.GeoCodeToLocationMapper
 import se.wintren.freyr.domain.mapper.contract.LocationEntityMapper
+import se.wintren.freyr.domain.mapper.contract.WeatherForecastDataMapper
 import se.wintren.freyr.domain.usecase.GetGeoCodeUseCaseImpl
 import se.wintren.freyr.domain.usecase.GetLocationsUseCaseImpl
+import se.wintren.freyr.domain.usecase.GetWeatherForecastUseCaseImpl
 import se.wintren.freyr.domain.usecase.StoreLocationUseCaseImpl
 import se.wintren.freyr.domain.usecase.contracts.GetGeoCodeUseCase
 import se.wintren.freyr.domain.usecase.contracts.GetLocationsUseCase
+import se.wintren.freyr.domain.usecase.contracts.GetWeatherForecastUseCase
 import se.wintren.freyr.domain.usecase.contracts.StoreLocationUseCase
 import se.wintren.freyr.repository.LocationsRepositoryImpl
+import se.wintren.freyr.repository.WeatherRepositoryImpl
 import se.wintren.freyr.repository.contracts.LocationsRepository
+import se.wintren.freyr.repository.contracts.WeatherRepository
 import se.wintren.freyr.repository.database.LocationDao
 import se.wintren.freyr.repository.network.GeoCodingAPI
+import se.wintren.freyr.repository.network.WeatherAPI
 import se.wintren.freyr.util.RuntimeRxSchedulers
 import se.wintren.freyr.util.RxSchedulers
 import javax.inject.Singleton
@@ -33,9 +40,19 @@ class AppModule {
         schedulers: RxSchedulers,
         locationEntityMapper: LocationEntityMapper,
         locationDao: LocationDao
-    ): LocationsRepository {
-        return LocationsRepositoryImpl(api, locationDao, locationEntityMapper, schedulers)
-    }
+    ): LocationsRepository = LocationsRepositoryImpl(
+        api,
+        locationDao,
+        locationEntityMapper,
+        schedulers
+    )
+
+    @Provides
+    @Singleton
+    fun provideWeatherRepository(
+        api: WeatherAPI,
+        schedulers: RxSchedulers
+    ): WeatherRepository = WeatherRepositoryImpl(api, schedulers)
     //endregion
 
     //region Provide Use Cases
@@ -45,44 +62,46 @@ class AppModule {
         repository: LocationsRepository,
         mapper: GeoCodeDataMapper,
         schedulers: RxSchedulers
-    ): GetGeoCodeUseCase {
-        return GetGeoCodeUseCaseImpl(repository, mapper, schedulers)
-    }
+    ): GetGeoCodeUseCase = GetGeoCodeUseCaseImpl(repository, mapper, schedulers)
 
     @Provides
     @Singleton
     fun provideStoreLocationUseCase(
         repository: LocationsRepository,
         mapper: GeoCodeToLocationMapper
-    ): StoreLocationUseCase {
-        return StoreLocationUseCaseImpl(repository, mapper)
-    }
+    ): StoreLocationUseCase = StoreLocationUseCaseImpl(repository, mapper)
 
     @Provides
     @Singleton
     fun provideGetLocationsUseCase(
         repository: LocationsRepository
-    ): GetLocationsUseCase {
-        return GetLocationsUseCaseImpl(repository)
-    }
+    ): GetLocationsUseCase = GetLocationsUseCaseImpl(repository)
+
+    @Provides
+    @Singleton
+    fun provideGetWeatherUseCase(
+        repository: WeatherRepository,
+        mapper: WeatherForecastDataMapper,
+        schedulers: RxSchedulers
+    ): GetWeatherForecastUseCase = GetWeatherForecastUseCaseImpl(repository, mapper, schedulers)
     //endregion
 
     //region Provide Mappers
     @Provides
     @Singleton
-    fun provideGeoCodeToLocationMapper(): GeoCodeToLocationMapper {
-        return GeoCodeToLocationMapperImpl()
-    }
+    fun provideGeoCodeToLocationMapper(): GeoCodeToLocationMapper = GeoCodeToLocationMapperImpl()
 
     @Provides
     @Singleton
-    fun provideLocationEntityMapper(): LocationEntityMapper {
-        return LocationEntityMapperImpl()
-    }
+    fun provideLocationEntityMapper(): LocationEntityMapper = LocationEntityMapperImpl()
 
     @Provides
     @Singleton
     fun provideGeoCodeMapper(): GeoCodeDataMapper = GeoCodeDataMapperImpl()
+
+    @Provides
+    @Singleton
+    fun provideWeatherMapper(): WeatherForecastDataMapper = WeatherForecastDataMapperImpl()
     //endregion
 
     //region Provide utils

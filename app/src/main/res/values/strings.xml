@@ -6,4 +6,5 @@
     <!-- Menu -->
     <string name="menu_item_done">Done</string>
     <string name="menu_item_settings">Settings</string>
+    <string name="noLocationsSavedHint">You have no locations saved, press the button to add some!</string>
 </resources>

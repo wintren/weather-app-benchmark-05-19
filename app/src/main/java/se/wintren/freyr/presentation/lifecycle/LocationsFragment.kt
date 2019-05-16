@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -24,9 +23,9 @@ class LocationsFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit var viewModel: LocationsViewModel
+    private lateinit var viewModel: LocationsViewModel
 
-    lateinit var locationsAdapter: LocationsAdapter
+    private lateinit var locationsAdapter: LocationsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,15 +53,23 @@ class LocationsFragment : Fragment() {
 
     private val locationObserver = Observer<List<Location>> {
         locationsAdapter.submitLocations(it)
+        noLocationsHint.visibility = if (it.isEmpty()) {
+            View.VISIBLE
+        } else {
+            View.INVISIBLE
+        }
     }
 
     private fun onAddLocationClick(v: View) {
-        findNavController().navigate(R.id.fragment_add_location)
+        val action = LocationsFragmentDirections.toAddLocation()
+        findNavController().navigate(action)
     }
 
     private fun onLocationClicked(location: Location) {
-        Toast.makeText(context, location.city, Toast.LENGTH_SHORT).show()
-        findNavController().navigate(R.id.fragment_forecast)
+        val action = with(location) {
+            LocationsFragmentDirections.toForecast(formatted, lon.toFloat(), lat.toFloat())
+        }
+        findNavController().navigate(action)
     }
 
 }

@@ -53,7 +53,6 @@ class ApiModule {
     //region WeatherAPI
     @Provides
     @Singleton
-    @Named("WeatherAPI")
     fun provideWeatherApiService(
         @Named("WeatherAPI") retrofit: Retrofit
     ): WeatherAPI {

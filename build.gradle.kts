@@ -9,12 +9,13 @@ buildscript {
     dependencies {
         classpath(Deps.androidGradlePlugin)
         classpath(Deps.kotlinGradlePlugin)
-        classpath(Deps.navigationSafeArgs)
+        classpath(Deps.safeArgs)
     }
 }
 
 allprojects {
     repositories {
+//        mavenCentral()
         google()
         jcenter()
 

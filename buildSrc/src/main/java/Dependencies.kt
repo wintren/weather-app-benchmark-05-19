@@ -37,19 +37,22 @@ object Versions {
     // Room
     const val room = "1.1.1"
 
+    // Joda Time
+    const val jodaTime = "2.10.2"
+
     // Test
     const val androidXEspresso = "3.1.1"
     const val androidXTestRunner = "1.1.1"
     const val jUnit = "4.12"
-
-
 }
 
 object Deps {
+
+
     // Plugins
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
-    const val navigationSafeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigationVersion}"
+    const val safeArgs = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigationVersion}"
 
     // Android
     const val androidSupportLegacy = "androidx.legacy:legacy-support-v4:${Versions.androidXLegacy}"
@@ -87,6 +90,13 @@ object Deps {
     const val archRoom = "android.arch.persistence.room:runtime:${Versions.room}"
     const val archRoomRx = "android.arch.persistence.room:rxjava2:${Versions.room}"
     const val archRoomCompiler = "android.arch.persistence.room:compiler:${Versions.room}"
+
+    // Joda
+    const val jodaTime = "joda-time:joda-time:${Versions.jodaTime}"
+
+    // Glide
+    const val glide = "com.github.bumptech.glide:glide:4.9.0"
+    const val glideCompiler = "com.github.bumptech.glide:compiler:4.9.0"
 
     // Test
     const val jUnit = "junit:junit:${Versions.jUnit}"

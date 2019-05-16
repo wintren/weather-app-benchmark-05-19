@@ -2,17 +2,21 @@ package se.wintren.freyr.presentation.lifecycle
 
 import android.os.Bundle
 import android.view.*
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_add_location.*
 import se.wintren.freyr.R
+import se.wintren.freyr.databinding.FragmentAddLocationBinding
 import se.wintren.freyr.extensions.closeKeybordOnFocusLost
 import se.wintren.freyr.extensions.enableIcon
 import se.wintren.freyr.extensions.onTextChanged
 import se.wintren.freyr.presentation.viewmodel.AddLocationViewModel
+import se.wintren.freyr.presentation.viewmodel.AddLocationViewModel.Event.*
 import javax.inject.Inject
 
 class AddLocationFragment : Fragment() {
@@ -20,9 +24,11 @@ class AddLocationFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    lateinit var viewModel: AddLocationViewModel
+    private lateinit var viewModel: AddLocationViewModel
 
-    lateinit var doneMenuItem: MenuItem
+    private lateinit var doneMenuItem: MenuItem
+
+    private lateinit var binding: FragmentAddLocationBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,17 +47,17 @@ class AddLocationFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View = inflater.inflate(R.layout.fragment_add_location, container, false)
+    ): View {
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_location, container, false)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         inputEditText.onTextChanged(viewModel::searchTextUpdated)
         inputEditText.closeKeybordOnFocusLost()
-    }
-
-    override fun onDestroy() {
-        viewModel.onAbort()
-        super.onDestroy()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -62,32 +68,20 @@ class AddLocationFragment : Fragment() {
 
     private fun initViewModel() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(AddLocationViewModel::class.java)
-        viewModel.onLocationResult = ::onResult
-        viewModel.onSearchStart = ::onSearchStarted
-        viewModel.onLocationMissing = ::onLocationMissing
+        viewModel.events.observe(this, eventsObserver)
     }
 
-    // View methods
-
-    private fun onResult(city: String, country: String) {
-        resultCity.text = city
-        resultCountry.text = country
-        showResultCard(showCard = true)
-        doneMenuItem.enableIcon(true)
-    }
-
-    private fun onSearchStarted() {
-        showResultCard(showCard = true, loading = true)
-    }
-
-    private fun onLocationMissing() {
-        showResultCard(showCard = false, loading = true)
-        doneMenuItem.enableIcon(false)
+    private val eventsObserver = Observer<AddLocationViewModel.Event> {
+        when (it) {
+            Loading -> showResultCard(showCard = true, loading = true)
+            Result -> showResultCard(showCard = true)
+            ResultMissing -> showResultCard(showCard = false)
+        }
     }
 
     private fun showResultCard(showCard: Boolean, loading: Boolean = false) {
         resultCard.visibility = if (showCard) View.VISIBLE else View.INVISIBLE
-
+        doneMenuItem.enableIcon(showCard && !loading)
         if (loading) {
             loadingSpinner.visibility = View.VISIBLE
             locationResultsContainer.visibility = View.INVISIBLE

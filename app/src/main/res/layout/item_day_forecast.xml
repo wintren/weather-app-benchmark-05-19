@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="se.wintren.freyr.domain.data.Forecast" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        tools:layout_width="150dp">
+
+        <TextView
+            android:id="@+id/weekday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|bottom"
+            android:text="@{item.weekday}"
+            android:textSize="@dimen/text_size_large"
+            app:layout_constraintBottom_toTopOf="@+id/weatherIcon"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Wednesday" />
+
+        <ImageView
+            android:id="@+id/weatherIcon"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:imageUrl="@{item.iconUrl}"
+            app:layout_constraintBottom_toTopOf="@+id/temperature"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/weekday"
+            tools:src="@drawable/icon_location" />
+
+        <TextView
+            android:id="@+id/temperature"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal|top"
+            android:text="@{item.temperature}"
+            android:textSize="@dimen/text_size_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/weatherIcon"
+            tools:text="23" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

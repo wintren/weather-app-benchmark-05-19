@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), HasSupportFragmentInjector {
         item.isChecked = true
         drawer_layout.closeDrawers()
         when (item.itemId) {
-            R.id.menu_settings -> navController.navigate(R.id.fragment_settings)
+            R.id.menu_settings -> navController.navigate(R.id.settings)
         }
         return true
     }

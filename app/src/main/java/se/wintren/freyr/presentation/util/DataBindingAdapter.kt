@@ -1,4 +1,4 @@
-package se.wintren.freyr.util.adapter
+package se.wintren.freyr.presentation.util
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

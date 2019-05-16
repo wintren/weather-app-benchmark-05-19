@@ -4,12 +4,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import se.wintren.freyr.R
 import se.wintren.freyr.domain.data.Location
-import se.wintren.freyr.util.adapter.DataBindingAdapter
-import se.wintren.freyr.util.adapter.DataBindingViewHolder
+import se.wintren.freyr.presentation.util.DataBindingAdapter
+import se.wintren.freyr.presentation.util.DataBindingViewHolder
 
-class LocationsAdapter(private val onClick: (location: Location) -> Unit) : DataBindingAdapter<Location>(DiffCallback()) {
+class LocationsAdapter(private val onClick: (location: Location) -> Unit) :
+    DataBindingAdapter<Location>(DiffCallback()) {
 
-    private val locations: ArrayList<Location> = arrayListOf()
+    private val locations = mutableListOf<Location>()
 
     fun submitLocations(newLocations: List<Location>) {
         locations.clear()
@@ -17,17 +18,11 @@ class LocationsAdapter(private val onClick: (location: Location) -> Unit) : Data
         notifyDataSetChanged()
     }
 
-    override fun getItemCount(): Int {
-        return locations.size
-    }
+    override fun getItemCount(): Int = locations.size
 
-    override fun getItemViewType(position: Int): Int {
-        return R.layout.item_location
-    }
+    override fun getItemViewType(position: Int): Int = R.layout.item_location
 
-    override fun getItem(position: Int): Location {
-        return locations[position]
-    }
+    override fun getItem(position: Int): Location = locations[position]
 
     override fun onBindViewHolder(holder: DataBindingViewHolder<Location>, position: Int) {
         super.onBindViewHolder(holder, position)

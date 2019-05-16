@@ -47,6 +47,7 @@ dependencies {
     implementation(Deps.navigationUI)
     implementation(Deps.lifecycleExtensions)
     implementation(Deps.lifecycleViewModel)
+    implementation(Deps.androidSupportPreference)
 
     // Rx
     implementation(Deps.rxJava)

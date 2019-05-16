@@ -34,5 +34,5 @@ interface AppComponent {
         fun build(): AppComponent
     }
 
-    fun inject(freyrApplication: FreyrApplication)
+    fun inject(application: FreyrApplication)
 }

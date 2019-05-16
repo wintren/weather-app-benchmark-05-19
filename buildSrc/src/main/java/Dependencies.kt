@@ -16,9 +16,10 @@ object Versions {
     const val supportLib = "1.0.2"
     const val constraintLayout = "1.1.3"
     const val material = "1.0.0"
+    const val supportPreference = "28.0.0-alpha1"
 
     // Jetpack
-    const val androidX = "1.0.2"
+    const val androidX = "1.2.0-alpha01"
     const val androidXLegacy = "1.0.0"
     const val navigationVersion = "2.1.0-alpha03"
 
@@ -64,6 +65,7 @@ object Deps {
     const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.navigationVersion}"
 
     const val androidXCore = "androidx.core:core-ktx:${Versions.androidX}"
+    const val androidSupportPreference = "com.android.support:preference-v7:${Versions.supportPreference}"
     const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigationVersion}"
     const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.navigationVersion}"
 

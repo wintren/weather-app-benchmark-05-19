@@ -1,5 +1,9 @@
 package se.wintren.freyr.di.app
 
+import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
+import androidx.preference.PreferenceManager
 import dagger.Module
 import dagger.Provides
 import se.wintren.freyr.domain.mapper.GeoCodeDataMapperImpl
@@ -19,6 +23,7 @@ import se.wintren.freyr.domain.usecase.contracts.GetLocationsUseCase
 import se.wintren.freyr.domain.usecase.contracts.GetWeatherForecastUseCase
 import se.wintren.freyr.domain.usecase.contracts.StoreLocationUseCase
 import se.wintren.freyr.repository.LocationsRepositoryImpl
+import se.wintren.freyr.repository.DegreesService
 import se.wintren.freyr.repository.WeatherRepositoryImpl
 import se.wintren.freyr.repository.contracts.LocationsRepository
 import se.wintren.freyr.repository.contracts.WeatherRepository
@@ -30,7 +35,12 @@ import se.wintren.freyr.util.RxSchedulers
 import javax.inject.Singleton
 
 @Module
-class AppModule {
+class AppModule() {
+
+    @Provides
+    fun provideContext(
+        app: Application
+    ): Context = app.applicationContext
 
     //region Provide Repositories
     @Provides
@@ -101,7 +111,9 @@ class AppModule {
 
     @Provides
     @Singleton
-    fun provideWeatherMapper(): WeatherForecastDataMapper = WeatherForecastDataMapperImpl()
+    fun provideWeatherMapper(
+        preferenceService: DegreesService
+    ): WeatherForecastDataMapper = WeatherForecastDataMapperImpl(preferenceService)
     //endregion
 
     //region Provide utils
@@ -109,5 +121,19 @@ class AppModule {
     @Singleton
     fun provideRxSchedulers(): RxSchedulers = RuntimeRxSchedulers()
     //endregion
+
+    @Provides
+    @Singleton
+    fun providePreferenceService(
+        preferences: SharedPreferences
+    ): DegreesService = DegreesService(preferences)
+
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(
+        context: Context
+    ): SharedPreferences {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+    }
 
 }

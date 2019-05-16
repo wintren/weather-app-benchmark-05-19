@@ -31,6 +31,7 @@ class LocationsFragment : Fragment() {
         super.onCreate(savedInstanceState)
         AndroidSupportInjection.inject(this)
         setupViewModel()
+        locationsAdapter = LocationsAdapter(::onLocationClicked)
     }
 
     private fun setupViewModel() {
@@ -45,8 +46,6 @@ class LocationsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         addLocationFAB.setOnClickListener(::onAddLocationClick)
-
-        locationsAdapter = LocationsAdapter(::onLocationClicked)
         locationsList.adapter = locationsAdapter
         locationsList.layoutManager = LinearLayoutManager(context)
     }

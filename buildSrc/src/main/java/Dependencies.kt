@@ -45,6 +45,9 @@ object Versions {
     const val androidXEspresso = "3.1.1"
     const val androidXTestRunner = "1.1.1"
     const val jUnit = "4.12"
+    const val mockito = "2.15.0"
+    const val mockitoKotlin = "1.5.0"
+    const val archCoreTesting= "1.1.1"
 }
 
 object Deps {
@@ -104,4 +107,7 @@ object Deps {
     const val jUnit = "junit:junit:${Versions.jUnit}"
     const val androidXTestRunner = "androidx.test:runner:${Versions.androidXTestRunner}"
     const val androidXEspresso = "androidx.test.espresso:espresso-core:${Versions.androidXEspresso}"
+    const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
+    const val mockitoKotlin = "com.nhaarman:mockito-kotlin-kt1.1:${Versions.mockitoKotlin}"
+    const val archCoreTesting = "android.arch.core:core-testing${Versions.archCoreTesting}"
 }

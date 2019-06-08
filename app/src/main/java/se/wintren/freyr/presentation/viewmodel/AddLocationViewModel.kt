@@ -30,7 +30,8 @@ class AddLocationViewModel @Inject constructor(
 
     init {
         queryDisposable = geoCodeQuerySubject
-            .debounce(500, TimeUnit.MILLISECONDS)
+            .observeOn(schedulers.computation())
+            .debounce(500, TimeUnit.MILLISECONDS, schedulers.computation())
             .filter { it.isNotEmpty() }
             .observeOn(schedulers.mainThread())
             .doOnNext { events.forceValue(Event.Loading) }
@@ -64,7 +65,7 @@ class AddLocationViewModel @Inject constructor(
         events.forceValue(Event.Result)
     }
 
-    fun onSaveLocation(): Boolean {
+    fun saveLocation(): Boolean {
         val save = geoCode.value ?: return false
         if (save.isEmpty()) return false
         storeLocationUseCase.storeLocation(save)

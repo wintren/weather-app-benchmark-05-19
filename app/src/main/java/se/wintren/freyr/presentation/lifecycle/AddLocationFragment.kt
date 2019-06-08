@@ -61,7 +61,7 @@ class AddLocationFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        viewModel.onSaveLocation()
+        viewModel.saveLocation()
         findNavController().navigateUp()
         return true
     }

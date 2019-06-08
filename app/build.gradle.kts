@@ -20,6 +20,10 @@ android {
         buildConfigField("String", "OPEN_WEATHER_API_KEY", property("OpenWeather_API_KEY") as String)
     }
 
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
+
     dataBinding.isEnabled = true
 
     buildTypes {
@@ -79,6 +83,9 @@ dependencies {
 
     // Test
     testImplementation(Deps.jUnit)
+    testImplementation(Deps.mockito)
+    testImplementation(Deps.mockitoKotlin)
+    testImplementation(Deps.archCoreTesting)
     androidTestImplementation(Deps.androidXTestRunner)
     androidTestImplementation(Deps.androidXEspresso)
 }

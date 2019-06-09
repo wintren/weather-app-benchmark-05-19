@@ -1,5 +1,6 @@
 package se.wintren.freyr.presentation.lifecycle
 
+import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
@@ -19,20 +20,29 @@ import se.wintren.freyr.presentation.viewmodel.AddLocationViewModel
 import se.wintren.freyr.presentation.viewmodel.AddLocationViewModel.Event.*
 import javax.inject.Inject
 
-class AddLocationFragment : Fragment() {
+open class AddLocationFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: AddLocationViewModel
+    protected lateinit var viewModel: AddLocationViewModel
 
     private lateinit var doneMenuItem: MenuItem
 
     private lateinit var binding: FragmentAddLocationBinding
 
+    override fun onAttach(context: Context) {
+        injectMembers()
+        super.onAttach(context)
+    }
+
+    protected open fun injectMembers() {
+        AndroidSupportInjection.inject(this)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(AddLocationViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AndroidSupportInjection.inject(this)
         initViewModel()
         setHasOptionsMenu(true)
     }
@@ -67,7 +77,6 @@ class AddLocationFragment : Fragment() {
     }
 
     private fun initViewModel() {
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(AddLocationViewModel::class.java)
         viewModel.events.observe(this, eventsObserver)
     }
 

@@ -86,6 +86,13 @@ dependencies {
     testImplementation(Deps.mockito)
     testImplementation(Deps.mockitoKotlin)
     testImplementation(Deps.archCoreTesting)
+
+    debugImplementation(Deps.xFragmentTesting)
+    androidTestImplementation(Deps.mockitoDexmaker)
+    androidTestImplementation(Deps.archCoreTesting)
+    androidTestImplementation(Deps.mockito)
+    androidTestImplementation(Deps.mockitoKotlin)
+    androidTestImplementation(Deps.xTestExtJUnit)
     androidTestImplementation(Deps.androidXTestRunner)
     androidTestImplementation(Deps.androidXEspresso)
 }

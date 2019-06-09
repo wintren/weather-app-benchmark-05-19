@@ -1,6 +1,7 @@
 @file:Suppress("SpellCheckingInspection")
 
 object Versions {
+
     // App
     const val minSDK = 23
     const val targetSDK = 28
@@ -47,11 +48,13 @@ object Versions {
     const val jUnit = "4.12"
     const val mockito = "2.15.0"
     const val mockitoKotlin = "1.5.0"
-    const val archCoreTesting= "1.1.1"
+    const val archCoreTesting = "2.0.0"
+    const val xFragmentTesting = "1.1.0-alpha07"
+    const val xTestExtJUnit = "1.1.0"
+    const val mockitoDexmaker = "2.25.0"
 }
 
 object Deps {
-
 
     // Plugins
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
@@ -108,6 +111,9 @@ object Deps {
     const val androidXTestRunner = "androidx.test:runner:${Versions.androidXTestRunner}"
     const val androidXEspresso = "androidx.test.espresso:espresso-core:${Versions.androidXEspresso}"
     const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
+    const val mockitoDexmaker = "com.linkedin.dexmaker:dexmaker-mockito:${Versions.mockitoDexmaker}"
     const val mockitoKotlin = "com.nhaarman:mockito-kotlin-kt1.1:${Versions.mockitoKotlin}"
-    const val archCoreTesting = "android.arch.core:core-testing${Versions.archCoreTesting}"
+    const val xFragmentTesting = "androidx.fragment:fragment-testing:${Versions.xFragmentTesting}"
+    const val xTestExtJUnit = "androidx.test.ext:junit:${Versions.xTestExtJUnit}"
+    const val archCoreTesting = "androidx.arch.core:core-testing:${Versions.archCoreTesting}"
 }

@@ -62,7 +62,6 @@ class GetGeoCodeUseCaseTest {
     @Test
     fun `Get geocode error`() {
         whenever(locationRepository.getGeoCode(anyString())).thenReturn(error(NullPointerException()))
-        whenever(mapper.mapResponse(any())).thenReturn(londonGeoCode)
 
         val testObserver = useCase.getGeoCode("Kashyyyk").test()
         testObserver.assertError { it is NullPointerException }
